@@ -22,6 +22,7 @@ foodieApp.config(function ($routeProvider) {
 	})
 foodieApp.controller('mainController',function($scope) {
  $scope.restaurants = [{
+	 					id:'1',
           	name: 'Farzi Cafe',
           	address: '38/39, Level 1, Block E , Inner Circle, Connaught Place',
           	location: 'Connaught Place',
@@ -34,6 +35,7 @@ foodieApp.controller('mainController',function($scope) {
           },
 
           {
+						id:'2',
             name: 'Jalapenos',
           	address: 'Mussourie Diversion, Pacific Hills,Rajpur Road, Rajpur',
           	location: 'Dehradun',
@@ -46,6 +48,7 @@ foodieApp.controller('mainController',function($scope) {
           },
 
           {
+						id:'3',
             name: 'TBistro',
           	address: 'Saina Inn, 3, Old Survey Road, Karanpur',
           	location: 'Dehradun',
@@ -58,6 +61,7 @@ foodieApp.controller('mainController',function($scope) {
           },
 
           {
+						id:'4',
             name: 'Anandam',
           	address: '69, Krishna Tower, Rajpur Road, Hathibarkala',
           	location: 'Dehradun',
@@ -70,6 +74,7 @@ foodieApp.controller('mainController',function($scope) {
           },
 
           {
+						id:'5',
             name: 'Ellora\'s Bakers and Confectioners',
           	address: '25, Rajpur Road',
           	location: 'Dehradun',
@@ -82,6 +87,7 @@ foodieApp.controller('mainController',function($scope) {
           },
 
           {
+						id:'6',
             name: 'Prez Restaurant',
           	address: 'Hotel President, 6, Astley Hall, Rajpur Road,',
           	location: 'Dehradun',
@@ -94,6 +100,7 @@ foodieApp.controller('mainController',function($scope) {
           },
 
           {
+						id:'7',
             name: 'The Terrace - Four Points by Sheraton Dehradun',
           	address: '152/4, Rajpur Road, Jakhan, Dehradun',
           	location: 'Dehradun',
@@ -106,6 +113,7 @@ foodieApp.controller('mainController',function($scope) {
           },
 
           {
+						id:'8',
             name: 'Barbeque Nation',
           	address: 'Chaudhary Plaza, Rajpur Road, Rajpur, Dehradun',
           	location: 'Dehradun',
@@ -123,12 +131,14 @@ foodieApp.controller('loginController',function($scope,$location) {
 									// console.log('Do Something');
 									$location.url('home');
 					}
-})
+});
 foodieApp.controller('restaurantController',function($scope,$routeParams,$http) {
 					$scope.restaurantId = $routeParams.id;
 
+
 					// var restaurants = [{$scope.restaurant = restaurants[$routeParams.id - 1] ]};
 					var restaurants = [{
+										id:'1',
 				           	name: 'Farzi Cafe',
 				           	address: '38/39, Level 1, Block E , Inner Circle, Connaught Place',
 				           	location: 'Connaught Place',
@@ -145,6 +155,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 				           },
 
 				           {
+										 id:'2',
 				             name: 'Jalapenos',
 				           	address: 'Mussourie Diversion, Pacific Hills,Rajpur Road, Rajpur',
 				           	location: 'Dehradun',
@@ -161,6 +172,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 				           },
 
 				           {
+										 id:'3',
 				             name: 'TBistro',
 				           	address: 'Saina Inn, 3, Old Survey Road, Karanpur',
 				           	location: 'Dehradun',
@@ -177,6 +189,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 				           },
 
 				           {
+										 id:'4',
 				             name: 'Anandam',
 				           	address: '69, Krishna Tower, Rajpur Road, Hathibarkala',
 				           	location: 'Dehradun',
@@ -193,6 +206,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 				           },
 
 				           {
+										 id:'5',
 				             name: 'Ellora\'s Bakers and Confectioners',
 				           	address: '25, Rajpur Road',
 				           	location: 'Dehradun',
@@ -209,6 +223,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 				           },
 
 				           {
+										 id:'6',
 				             name: 'Prez Restaurant',
 				           	address: 'Hotel President, 6, Astley Hall, Rajpur Road,',
 				           	location: 'Dehradun',
@@ -225,6 +240,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 				           },
 
 				           {
+										 id:'7',
 				             name: 'The Terrace - Four Points by Sheraton Dehradun',
 				           	address: '152/4, Rajpur Road, Jakhan, Dehradun',
 				           	location: 'Dehradun',
@@ -241,6 +257,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 				           },
 
 				           {
+										 id:'8',
 				             name: 'Barbeque Nation',
 				           	address: 'Chaudhary Plaza, Rajpur Road, Rajpur, Dehradun',
 				           	location: 'Dehradun',
@@ -259,37 +276,30 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 							 $scope.restaurant = restaurants[$routeParams.id - 1];
 
 							 $scope.getIngredients = function(url) {
-								 var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}'
-								 	$http({
-									 'method': 'POST',
-									 'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
-									 'headers': {
-										 'Authorization': 'efa540bb8c3e49129e1c495dbebcd67a',
-										 'Content-Type': 'application/json'
-									 },
-									 'data': data
-								 	}).then(function (response) {
-										 var ingredients = response.data.outputs[0].data.concepts;
+								//  console.log(url);
+									 var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}'
+											$http({
+										 'method': 'POST',
+										 'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+										 'headers': {
+											 'Authorization': 'KEY e1029657175c41d7b74c010a5d47127f',
+											 'Content-Type': 'application/json'
+										 },
+										 'data': data,
+											}).then(function (response) {
+												console.log(response);
+											 var ingredients = response.data.outputs[0].data.concepts;
+											 console.log(ingredients);
 											 var list = '';
-											 for (var i =0;i < ingredients.length;i++) {
-												 list += '<div class="ingredient">' + ingredients[i].name + '</div>'
-											 }
-											 // $('.ingredients').html(list);
-											 console.log(list);
+													 for (var i = 0;i < ingredients.length;i++) {
+														 list += '<div class="ingredient">' + ingredients[i].name + '</div>'
+													 }
+													//  $('.ingredients').html(list);
+													 console.log('success wala function')
 											 }, function (xhr) {
-												//  console.log(xhr);
-										})
-								}
-											// success: function (response) {
-											//  var ingredients = response.outputs[0].data.concepts;
-											// 	 var list = '';
-											// 	 for (var i =0;i < ingredients.length ;i++) {
-											// 		 list += 'div class="ingredient">' + ingredients[i].name + ''
-											// 	 }
-											//  $('.ingredients').html(list);
-											//  },
-											//  error: function (xhr) {
-											// 	 console.log(xhr);
-											//  }
-											// })
+												 console.log('error wala function');
+										});
+									}
+
+								// $scope.ingredients = [];
 	})
