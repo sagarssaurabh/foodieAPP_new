@@ -234,7 +234,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 				           	hours: '8 AM 3PM ,7 PM to 11 PM (Mon-Sun)',
 										bestDish: {
 											name: 'Kebab',
-											image: 'http://noblepig.com/images/2016/06/Avocado-and-Three-Bean-Salad-is-perfect-for-a-summertime-barbecue-side-dish.JPG'
+											image: 'https://cdn.pixabay.com/photo/2017/07/14/23/25/kebab-2505237_960_720.jpg'
 										},
 				           	image: 'https://images.pexels.com/photos/299347/pexels-photo-299347.jpeg?h=350&auto=compress&cs=tinysrgb'
 				           },
@@ -268,7 +268,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 				           	hours: '12 Noon to 3 PM, 6:30 PM to 11 PM',
 										bestDish: {
 											name: 'Hara Bhara',
-											image: 'http://noblepig.com/images/2016/06/Avocado-and-Three-Bean-Salad-is-perfect-for-a-summertime-barbecue-side-dish.JPG'
+											image: 'http://www.vegrecipesofindia.com/wp-content/uploads/2013/01/hara-bhara-kabab-recipe.jpg'
 										},
 				           	image: 'https://images.pexels.com/photos/279835/pexels-photo-279835.jpeg?h=350&auto=compress&cs=tinysrgb'
 				           }
@@ -277,29 +277,36 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 
 							 $scope.getIngredients = function(url) {
 								//  console.log(url);
+
+								// var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}'
+				        //       $http({
+				        //         	'method': 'POST',
+				        //         	'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+				        //         	'headers': {
+				        //         		'Authorization': 'Key d32931f783ca4d3c8bc8503bce71e841',
+				        //         		'Content-Type': 'application/json'
+				        //         	},
+				        //         	'data': data
+                // })
+
 									 var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}'
 											$http({
-										 'method': 'POST',
-										 'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
-										 'headers': {
-											 'Authorization': 'KEY e1029657175c41d7b74c010a5d47127f',
-											 'Content-Type': 'application/json'
-										 },
-										 'data': data,
+																 'method': 'POST',
+																 'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+																 'headers': {
+																	 'Authorization': 'Key e1029657175c41d7b74c010a5d47127f',
+																	 'Content-Type': 'application/json'
+										 					 		},
+										 							'data': data
 											}).then(function (response) {
-												console.log(response);
-											 var ingredients = response.data.outputs[0].data.concepts;
-											 console.log(ingredients);
-											 var list = '';
-													 for (var i = 0;i < ingredients.length;i++) {
-														 list += '<div class="ingredient">' + ingredients[i].name + '</div>'
-													 }
-													//  $('.ingredients').html(list);
-													 console.log('success wala function')
+														var ingredients = response.data.outputs[0].data.concepts;
+														for (var i =0;i < ingredients.length;i++) {
+														$scope.ingredients.push(ingredients[i].name);
+														}
 											 }, function (xhr) {
-												 console.log('error wala function');
+												 console.log(xhr);
 										});
 									}
 
-								// $scope.ingredients = [];
+								$scope.ingredients = [];
 	})
