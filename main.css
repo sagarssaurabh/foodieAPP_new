@@ -62,6 +62,16 @@ body {
     border-radius: 4px;
 }
 
+#app .title{
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 100px;
+  color: #d3c23d;
+  padding-bottom: 50px;
+  margin-top: -200px;
+}
+#app .title1{
+  font-size: 100px;
+}
 /*this css is about displaying restaurant information*/
 .hero {
     margin-bottom: 2rem;
