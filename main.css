@@ -20,6 +20,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 80px;
 }
 
 #app{
@@ -29,8 +30,11 @@ body {
 #app .navbar {
     color: white;
     background-color: #cb202d;
+    /*position: fixed;*/
 }
-
+/*#app .static{
+    position: fixed;
+}*/
 #app .navbar a {
     color: white;
 }

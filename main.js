@@ -281,7 +281,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 							 $scope.ingredients1 = [];
 							 $scope.restaurant = restaurants[$routeParams.id - 1];
 							 $scope.nonVeg=['beef','meat','egg','fish','escargots','seafood','chicken','barbecue','trout','fillet','mackerel','smoked fish','salmon','pork','steak','sirloin','becon','ham'];
-							 var nonveg;
+							 var nonveg=0;
 							 $scope.FindFoodType = function(url) {
 
 									 var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}'
@@ -296,13 +296,13 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 											}).then(function (response) {
 												var ingredients1 = response.data.outputs[0].data.concepts;
 														 // console.log(ingredients);
-														 for (var i =0;i < ingredients1.length;i++) {
+														 for (var i = 0 ; i < ingredients1.length ; i++) {
 
 															 if(ingredients1[i].value > 0.75)
 															 {
 																 $scope.ingredients1.push(ingredients1[i].name);
-																 for(var j=0;j<$scope.nonVeg.length;j++){
-																			 if($scope.ingredients1s[i] == $scope.nonVeg[j])
+																 for(var j=0 ; j<$scope.nonVeg.length ; j++){
+																			 if($scope.ingredients1[i] == $scope.nonVeg[j])
 																			 {
 																				 nonveg=1;
 																				 break;
@@ -311,6 +311,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 																				 nonveg=0;
 																			 }
 																 }
+															}
 																//  console.log($scope.ingredients[i]);
 																 if(nonveg == 1){
 																		//  console.log('food is nonveg');
@@ -325,12 +326,13 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 																		 $('.notice').text('It\'s a VegDish' );
 																		 $('.notice').addClass('vegText');
 																 }
-															 }
+
 
 														 }
+
 											 }, function (xhr) {
-												 console.log(xhr);
-												// console.log('error wala function');
+												//  console.log(xhr);
+												console.log('error wala function');
 										});
 										$('.bestImage').removeClass('hidden');
 										$('.ingredients').addClass('hidden');
@@ -360,19 +362,16 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 	 														 }
 																// 	$('bestImage').addClass('hidden');
 																// $('ingredients').removeClass('hidden');
+																console.log('success wala');
 	 											 }, function (xhr) {
 	 												 console.log(xhr);
-													// 	console.log('error wala function');
+														console.log('error wala function');
 	 										});
 											$('.bestImage').addClass('hidden');
-            					$('.ingredients').removeClass('hidden');
+            								$('.ingredients').removeClass('hidden');
 											$('.notice').addClass('hidden');
 	 									}
-
-
-
-
-	})
+})
 	// foodieApp.controller('veganController',function($scope) {
 	// 						$scope.FindFoodType = function(url) {
 	// 							console.log(url);
